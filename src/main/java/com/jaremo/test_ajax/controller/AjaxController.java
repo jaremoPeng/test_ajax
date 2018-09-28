@@ -30,4 +30,12 @@ public class AjaxController {
         }
         return null;
     }
+
+    @RequestMapping("/deljson")
+    public String delDataJson(String bid,HttpServletResponse response){
+        if(bid!=null){
+            ajaxMapper.removeBookByBid(Integer.valueOf(bid));
+        }
+        return "redirect:/getjson";
+    }
 }

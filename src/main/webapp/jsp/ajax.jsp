@@ -15,15 +15,15 @@
     <script src="../js/bootstrap.min.js"></script>
     <script type="text/javascript">
         window.onload = function () {
-            document.getElementById("btn").onclick = function () {
-                var xmlhttp = null;
-                if (window.XMLHttpRequest) {
-                    xmlhttp = new XMLHttpRequest();
-                }
-                else {
-                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                }
+            var xmlhttp = null;
+            if (window.XMLHttpRequest) {
+                xmlhttp = new XMLHttpRequest();
+            }
+            else {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
 
+            document.getElementById("btn").onclick = function () {
                 var table = document.getElementById("tbl");
 
                 xmlhttp.onreadystatechange = function () {
@@ -32,7 +32,7 @@
                         var jsonObject = JSON.parse(resultJson); // 将返回的数据转换为json
 
                         var tcs = table.getElementsByTagName("tr");
-                        for(var a=tcs.length-1;a>=1;a--){
+                        for (var a = tcs.length - 1; a >= 1; a--) {
                             table.deleteRow(a);
                         }
 
@@ -40,10 +40,15 @@
                             var tr = document.createElement("tr");
                             var td = document.createElement("td");
                             td.innerHTML = jsonObject[i].bname;
+                            td.setAttribute("class","success")
                             var td1 = document.createElement("td");
                             td1.innerHTML = jsonObject[i].price;
+                            var td2 = document.createElement("td");
+                            var requrl = "/deljson?bid="+jsonObject[i].bid;
+                            td2.innerHTML = "<a href='"+requrl+"'>删除</a>";
                             tr.appendChild(td);
                             tr.appendChild(td1);
+                            tr.appendChild(td2);
                             table.appendChild(tr);
                         }
                     }
@@ -56,8 +61,17 @@
 </head>
 <body>
 <input type="text" name="bookname"/><input type="button" id="btn" value="查询"/>
-<table id="tbl" class="table table-bordered table-hover table-striped">
-<tr><th>书名</th><th>价格</th><th>操作</th></tr>
+<table class="table table-bordered table-hover table-striped table-condensed">
+    <thead>
+        <tr>
+            <th>书名</th>
+            <th>价格</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody id="tbl">
+
+    </tbody>
 </table>
 </body>
 </html>
