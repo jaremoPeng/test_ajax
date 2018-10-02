@@ -36,6 +36,6 @@ public class AjaxController {
         if(bid!=null){
             ajaxMapper.removeBookByBid(Integer.valueOf(bid));
         }
-        return "redirect:/getjson";
+        return null;
     }
 }
