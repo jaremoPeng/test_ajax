@@ -35,7 +35,7 @@
                 xmlhttp.send();
             } else {
                 xmlhttp.open(methodType, url, true);
-                xmlhttp.setRequestHeader("Content-Type", "Application/x-www-form-urlencoded;charset=UTF-8");
+                xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
                 xmlhttp.send(params);
             }
         }
